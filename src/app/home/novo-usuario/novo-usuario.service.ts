@@ -25,4 +25,10 @@ export class NovoUsuarioService {
       },
     );
   }
+
+  verificaSeUsuarioExiste(nomeUsuario: string): Observable<NovoUsuario> {
+    return this.httpCliente.get<NovoUsuario>(
+      `http://localhost:3000/user/exists/${nomeUsuario}`,
+    );
+  }
 }
