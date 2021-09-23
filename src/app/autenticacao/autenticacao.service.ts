@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface IUser {
-  userName: string;
-  password: string;
-}
+import { LoginUsuario } from './login-usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +9,13 @@ export interface IUser {
 export class AutenticacaoService {
   constructor(private httpCliente: HttpClient) {}
 
-  autenticar({ userName, password }: IUser): Observable<IUser> {
-    return this.httpCliente.post<IUser>('http://localhost:3000/user/login', {
-      userName,
-      password,
-    });
+  autenticar({ userName, password }: LoginUsuario): Observable<LoginUsuario> {
+    return this.httpCliente.post<LoginUsuario>(
+      'http://localhost:3000/user/login',
+      {
+        userName,
+        password,
+      },
+    );
   }
 }

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AutenticacaoService,
-  IUser,
-} from '../../autenticacao/autenticacao.service';
+import { AutenticacaoService } from '../../autenticacao/autenticacao.service';
 import { Router } from '@angular/router';
+import { LoginUsuario } from '../../autenticacao/login-usuario';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  user = {} as IUser;
+  user = {} as LoginUsuario;
 
   constructor(
     private authService: AutenticacaoService,
