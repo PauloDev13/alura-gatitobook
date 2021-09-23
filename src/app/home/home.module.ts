@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -11,6 +11,12 @@ import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 @NgModule({
   declarations: [HomeComponent, LoginComponent, NovoUsuarioComponent],
   exports: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule, FormsModule, MensagemModule],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MensagemModule,
+  ],
 })
 export class HomeModule {}
