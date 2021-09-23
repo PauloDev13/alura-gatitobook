@@ -2,7 +2,6 @@
 
 <form class="mt-4" (ngSubmit)="handleLogin()" #formLogin="ngForm">
   <div class="form-group">
-    <label>Usuário</label>
     <input
         [(ngModel)]="user.userName"
         name="username"
@@ -20,7 +19,6 @@
   </div>
   
   <div class="form-group">
-    <label>Usuário</label>
     <input
         [(ngModel)]="user.password"
         name="password"
@@ -41,3 +39,4 @@
     Login
   </button>
 </form>
+<p class="mt-2">Não é cadastrado? <a [routerLink]="['novousuario']">Cadastre-se</a></p>

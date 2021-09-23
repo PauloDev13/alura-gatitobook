@@ -2,7 +2,6 @@
 
 <form class="mt-4" (ngSubmit)="handleCadastro()" #formCadastro="ngForm">
   <div class="form-group">
-    <label>Email</label>
     <input
         name="email"
         type="text"
@@ -16,7 +15,6 @@
   </div>
   
   <div class="form-group">
-    <label>Nome completo</label>
     <input
         name="fullname"
         type="text"
@@ -30,7 +28,19 @@
   </div>
   
   <div class="form-group">
-    <label>Usuário</label>
+    <input
+        name="username"
+        type="text"
+        class="form-control"
+        placeholder="Usuário "
+        required
+    />
+    <app-mensagem
+        mensagem="Usuário é obrigatório."
+    ></app-mensagem>
+  </div>
+  
+  <div class="form-group">
     <input
         name="password"
         type="password"
@@ -48,3 +58,4 @@
     Cadastro
   </button>
 </form>
+<p class="mt-2">Já é cadastrado? <a [routerLink]="['']">Faça login</a></p>
