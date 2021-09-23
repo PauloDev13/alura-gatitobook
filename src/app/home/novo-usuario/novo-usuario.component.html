@@ -51,9 +51,9 @@
         mensagem="Usuário é obrigatório.">
     </app-mensagem>
     <app-mensagem
-        *ngIf="novoUsuarioForm.get('userName')?.errors &&
+        *ngIf="novoUsuarioForm.get('userName')?.errors?.minusculo &&
                novoUsuarioForm.get('userName')?.touched"
-        mensagem="O login do Usuário deve ter no mínimo 6 caracteres.">
+        mensagem="O login deve conter somente letras minúsculas.">
     </app-mensagem>
   </div>
   
