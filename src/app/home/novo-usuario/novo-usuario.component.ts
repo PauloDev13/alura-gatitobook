@@ -37,17 +37,19 @@ export class NovoUsuarioComponent implements OnInit {
   }
 
   handleCadastrar(): void {
-    const novoUsuario =
-      this.novoUsuarioForm.getRawValue() as NovoUsuarioInterface;
+    if (this.novoUsuarioForm.valid) {
+      const novoUsuario =
+        this.novoUsuarioForm.getRawValue() as NovoUsuarioInterface;
 
-    this.novoUsuarioService.cadastroNovoUsuario(novoUsuario).subscribe(
-      () => {
-        this.router.navigate(['']).then();
-      },
-      (erro) => {
-        alert(`Erro ao salvar usuário: ${novoUsuario.userName}`);
-        console.error(erro);
-      },
-    );
+      this.novoUsuarioService.cadastroNovoUsuario(novoUsuario).subscribe(
+        () => {
+          this.router.navigate(['']).then();
+        },
+        (erro) => {
+          alert(`Erro ao salvar usuário: ${novoUsuario.userName}`);
+          console.error(erro);
+        },
+      );
+    }
   }
 }
