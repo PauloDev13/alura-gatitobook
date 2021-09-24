@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NovoUsuarioService } from './novo-usuario.service';
-import { NovoUsuario } from './novo-usuario';
+import { NovoUsuarioInterface } from './novo-usuario.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorMinusculo } from './validator-minusculo';
 import { UsuarioExisteService } from './usuario-existe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-novo-usuario',
@@ -15,11 +16,12 @@ export class NovoUsuarioComponent implements OnInit {
     private formBuilder: FormBuilder,
     private novoUsuarioService: NovoUsuarioService,
     private usuarioExisteService: UsuarioExisteService,
+    private router: Router,
   ) {}
 
   novoUsuarioForm!: FormGroup;
 
-  // novoUsuario = {} as NovoUsuario;
+  // novoUsuario = {} as NovoUsuarioInterface;
 
   ngOnInit(): void {
     this.novoUsuarioForm = this.formBuilder.group({
@@ -35,11 +37,12 @@ export class NovoUsuarioComponent implements OnInit {
   }
 
   handleCadastrar(): void {
-    const novoUsuario = this.novoUsuarioForm.getRawValue() as NovoUsuario;
+    const novoUsuario =
+      this.novoUsuarioForm.getRawValue() as NovoUsuarioInterface;
 
     this.novoUsuarioService.cadastroNovoUsuario(novoUsuario).subscribe(
       () => {
-        console.log(`Usuario ${novoUsuario.userName} salvo com sucesso.`);
+        this.router.navigate(['']).then();
       },
       (erro) => {
         alert(`Erro ao salvar usuário: ${novoUsuario.userName}`);

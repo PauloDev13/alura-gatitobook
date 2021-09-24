@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NovoUsuario } from './novo-usuario';
+import { NovoUsuarioInterface } from './novo-usuario.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,8 +14,8 @@ export class NovoUsuarioService {
     fullName,
     userName,
     password,
-  }: NovoUsuario): Observable<NovoUsuario> {
-    return this.httpCliente.post<NovoUsuario>(
+  }: NovoUsuarioInterface): Observable<NovoUsuarioInterface> {
+    return this.httpCliente.post<NovoUsuarioInterface>(
       'http://localhost:3000/user/signup',
       {
         email,
@@ -26,8 +26,10 @@ export class NovoUsuarioService {
     );
   }
 
-  verificaSeUsuarioExiste(nomeUsuario: string): Observable<NovoUsuario> {
-    return this.httpCliente.get<NovoUsuario>(
+  verificaSeUsuarioExiste(
+    nomeUsuario: string,
+  ): Observable<NovoUsuarioInterface> {
+    return this.httpCliente.get<NovoUsuarioInterface>(
       `http://localhost:3000/user/exists/${nomeUsuario}`,
     );
   }
