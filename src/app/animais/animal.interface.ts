@@ -10,3 +10,4 @@ export interface AnimalInterface {
 }
 
 export type Animais = AnimalInterface[];
+export type Animal = AnimalInterface;
