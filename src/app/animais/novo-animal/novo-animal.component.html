@@ -4,8 +4,8 @@
       [formGroup]="formularioAnimal"
       (ngSubmit)="upload()"
   >
-    <div class="form-group" *ngIf="!preview; else previewImage">
-      <div>
+    <div class="col-md-6 text-center">
+      <div class="form-group" *ngIf="!preview; else previewImage">
         <button
             class="btn btn-primary"
             type="button"
@@ -23,14 +23,14 @@
           (change)="gravaArquivo($event.target)"
         />
         <app-mensagem
-            mensagem="Selecione uma foto"
+            mensagem="Selecione a foto"
             *ngIf="!!formularioAnimal.get('file')?.errors?.required"
         ></app-mensagem>
       </div>
+      <ng-template #previewImage>
+        <app-animal [url]="preview" title="Preview"></app-animal>
+      </ng-template>
     </div>
-    <ng-template #previewImage>
-      <app-animal [url]="preview" title="Preview"></app-animal>
-    </ng-template>
     
     <div class="col-md-6">
       <div class="form-group">
@@ -54,8 +54,14 @@
       </div>
       
       <div *ngIf="!percentualConcluido; else uploadDiv">
-        <button>Carregar</button>
-        <a class="btn btn-secondary btn-block" routerLink="['animais]">
+        <button
+            class="btn btn-primary btn-block"
+            type="submit"
+            [disabled]="formularioAnimal.invalid"
+        >
+          Enviar
+        </button>
+        <a class="btn btn-secondary btn-block" [routerLink]="['']">
           Cancelar
         </a>
       </div>

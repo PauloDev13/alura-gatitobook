@@ -11,7 +11,7 @@
     <app-menu #menu>
       <ul class="list-unstyled">
         <li>
-          <a [routerLink]="['animais', 'novo']">
+          <a [routerLink]="['animais', 'novo']" (click)="menu.abreMenu()">
             Novo animal
           </a>
         </li>
