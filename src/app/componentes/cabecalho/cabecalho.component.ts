@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { UsuarioService } from '../../autenticacao/usuario/usuario.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cabecalho',
@@ -10,10 +9,10 @@ import { Router } from '@angular/router';
 export class CabecalhoComponent {
   user$ = this.usuarioService.retornaUsuario();
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(private usuarioService: UsuarioService) {}
 
   logout(): void {
     this.usuarioService.logout();
-    this.router.navigate(['']).then();
+    // this.router.navigate(['']).then();
   }
 }

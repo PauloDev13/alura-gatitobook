@@ -5,8 +5,11 @@
       <div *ngIf="user.name; else login">
         <i class="fa fa-user-circle mr-1"></i>
         <a class="mr-1">{{user.name}}</a>
-        <a (click)="logout()">Logout</a>
-      
+        <span class="navbar-text">
+          <a [routerLink]="['']" (click)="logout()">
+            Logout
+          </a>
+        </span>
       </div>
     </div>
   </nav>
