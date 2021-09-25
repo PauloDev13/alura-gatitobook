@@ -3,3 +3,5 @@ export interface UsuarioInterface {
   name?: string;
   email?: string;
 }
+
+export type Usuario = UsuarioInterface;

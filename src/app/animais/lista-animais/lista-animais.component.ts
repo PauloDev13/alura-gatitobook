@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Animais } from '../animal.interface';
-import { UsuarioService } from '../../autenticacao/usuario/usuario.service';
-import { AnimalService } from '../animal.service';
-import { switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lista-animais',
@@ -11,20 +8,27 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./lista-animais.component.css'],
 })
 export class ListaAnimaisComponent implements OnInit {
-  animais$: Observable<Animais> = of([]);
+  // Muda ao utilizar resolver
+  // animais$: Observable<Animais> = of([]);
+  animais: Animais = [];
 
   constructor(
-    private usuarioService: UsuarioService,
-    private animalService: AnimalService,
-  ) {}
+    private activatedRoute: ActivatedRoute, // Muda ao utilizar resolver // private usuarioService: UsuarioService,
+  ) // private animalService: AnimalService,
+  {}
 
   ngOnInit(): void {
-    this.animais$ = this.usuarioService.retornaUsuario().pipe(
-      switchMap((usuario) => {
-        const userName = usuario.name ?? '';
-        return this.animalService.listaDeUsuario(userName);
-      }),
-    );
+    this.activatedRoute.params.subscribe(() => {
+      this.animais = this.activatedRoute.snapshot.data.animais;
+    });
+    // Muda ao utilizar resolver
+    // this.animais$ = this.usuarioService.retornaUsuario().pipe(
+    //   switchMap((usuario) => {
+    //     const userName = usuario.name ?? '';
+    //     return this.animalService.listaDeUsuario(userName);
+    //   }),
+    // );
+
     // this.usuarioService.retornaUsuario().subscribe((usuario) => {
     //   const userName = usuario.name ?? '';
     //
