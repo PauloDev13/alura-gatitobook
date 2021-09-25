@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NovoUsuarioInterface } from './novo-usuario.interface';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+
+const API = environment.baseUrl;
 
 @Injectable({
   providedIn: 'root',
@@ -15,15 +18,12 @@ export class NovoUsuarioService {
     userName,
     password,
   }: NovoUsuarioInterface): Observable<NovoUsuarioInterface> {
-    return this.httpCliente.post<NovoUsuarioInterface>(
-      'http://localhost:3000/user/signup',
-      {
-        email,
-        fullName,
-        userName,
-        password,
-      },
-    );
+    return this.httpCliente.post<NovoUsuarioInterface>(`${API}/user/signup`, {
+      email,
+      fullName,
+      userName,
+      password,
+    });
   }
 
   verificaSeUsuarioExiste(

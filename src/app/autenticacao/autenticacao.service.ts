@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { LoginUsuario } from './login-usuario';
 import { UsuarioService } from './usuario/usuario.service';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+
+const API = environment.baseUrl;
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +23,7 @@ export class AutenticacaoService {
   }: LoginUsuario): Observable<HttpResponse<LoginUsuario>> {
     return this.httpCliente
       .post<LoginUsuario>(
-        'http://localhost:3000/user/login',
+        `${API}/user/login`,
         {
           userName,
           password,
