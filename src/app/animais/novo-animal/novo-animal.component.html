@@ -24,12 +24,47 @@
         />
         <app-mensagem
             mensagem="Selecione uma foto"
-            *ngIf="!!formularioAnimal.get('file')?.errors?.maxLength"
+            *ngIf="!!formularioAnimal.get('file')?.errors?.required"
         ></app-mensagem>
       </div>
     </div>
     <ng-template #previewImage>
       <app-animal [url]="preview" title="Preview"></app-animal>
     </ng-template>
+    
+    <div class="col-md-6">
+      <div class="form-group">
+        <textarea
+            class="form-control
+            form-control-sm"
+            formControlName="description"
+            placeholder="Descrição do animal"
+        ></textarea>
+        <app-mensagem
+            mensagem="A descrição deve ter 300 caracteres no máximo"
+            *ngIf="!!formularioAnimal.get('description')?.errors?.maxLength"
+        ></app-mensagem>
+      </div>
+      
+      <div class="form-group">
+        <label class="text-muted">
+          Permite comentário
+          <input type="checkbox" formControlName="allowComments">
+        </label>
+      </div>
+      
+      <div *ngIf="!percentualConcluido; else uploadDiv">
+        <button>Carregar</button>
+        <a class="btn btn-secondary btn-block" routerLink="['animais]">
+          Cancelar
+        </a>
+      </div>
+      
+      <ng-template #uploadDiv>
+        <div>
+          Percentual de upload {{ percentualConcluido }} %
+        </div>
+      </ng-template>
+    </div>
   </form>
 </div>

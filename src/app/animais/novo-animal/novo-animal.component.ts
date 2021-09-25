@@ -18,7 +18,7 @@ export class NovoAnimalComponent implements OnInit {
     this.formularioAnimal = this.formBuilder.group({});
   }
 
-  gravaArquivo(arquivo: EventTarget) {}
+  gravaArquivo(arquivo: EventTarget | null) {}
 
   upload() {}
 }
