@@ -10,7 +10,7 @@ const API = environment.baseUrl;
 @Injectable({
   providedIn: 'root',
 })
-export class AnimaisService {
+export class AnimalService {
   constructor(
     private httpClient: HttpClient,
     private tokenService: TokenService,

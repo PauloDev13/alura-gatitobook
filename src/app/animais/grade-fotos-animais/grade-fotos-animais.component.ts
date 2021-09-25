@@ -8,7 +8,7 @@ import { Animais } from '../animal.interface';
 })
 export class GradeFotosAnimaisComponent implements OnInit {
   @Input()
-  animais: Animais = {} as Animais;
+  animais: Animais = [];
 
   constructor() {}
 
