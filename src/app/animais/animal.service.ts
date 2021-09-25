@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Animais, Animal } from './animal.interface';
 import { environment } from '../../environments/environment';
+import { catchError, mapTo } from 'rxjs/operators';
 
 const API = environment.baseUrl;
+const NOT_MODIFIED = '304';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AnimalService {
   constructor(
-    private httpClient: HttpClient,
-  ) // private tokenService: TokenService,
-  {}
+    private httpClient: HttpClient, // private tokenService: TokenService,
+  ) {}
 
   listaDeUsuario(nomeDoUsuario: string): Observable<Animais> {
     // Foi substituído pelo AutenticacaoInterceptor
@@ -31,5 +32,26 @@ export class AnimalService {
     return this.httpClient.get<Animal>(`${API}/photos/${id}`, {
       // headers,
     });
+  }
+
+  excluirAnimal(id: number): Observable<Animal> {
+    return this.httpClient.delete<Animal>(`${API}/photos/${id}`);
+  }
+
+  curtir(id: number): Observable<boolean> {
+    return this.httpClient
+      .post(
+        `${API}/photos/${id}/like`,
+        {},
+        {
+          observe: 'response',
+        },
+      )
+      .pipe(
+        mapTo(true),
+        catchError((error) => {
+          return error.status === NOT_MODIFIED ? of(false) : throwError(error);
+        }),
+      );
   }
 }
