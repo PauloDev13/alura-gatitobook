@@ -13,11 +13,11 @@ export class ListaAnimaisComponent implements OnInit {
   animais: Animais = [];
 
   constructor(
-    private activatedRoute: ActivatedRoute, // Muda ao utilizar resolver // private usuarioService: UsuarioService,
-  ) // private animalService: AnimalService,
-  {}
+    private activatedRoute: ActivatedRoute, // Muda ao utilizar resolver // private usuarioService: UsuarioService, // private animalService: AnimalService,
+  ) {}
 
   ngOnInit(): void {
+    // usando resolver
     this.activatedRoute.params.subscribe(() => {
       this.animais = this.activatedRoute.snapshot.data.animais;
     });
